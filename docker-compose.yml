@@ -80,7 +80,26 @@ services:
     ports:
         - "3001:3001"
     depends_on:
-      - kafka
+      - api-gateway
+    networks:
+      - broker_network
+    restart: always
+
+
+  purchase-engine:
+    build:
+      context: ./purchase-engine
+      dockerfile: Dockerfile
+    container_name: purchase_engine
+    command: node dist/main
+    environment:
+      NODE_ENV: development
+      LOGGER_LEVEL: silly
+      PORT: 3002
+    ports:
+        - "3002:3002"
+    depends_on:
+      - user-engine
     networks:
       - broker_network
     restart: always
