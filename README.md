@@ -38,3 +38,7 @@ $ npm run test:cov
 # up to Docker
 $ docker-compose up --build -d
 ```
+
+## Restore database
+
+Copy sql from setup.sql file in project root and restore database
