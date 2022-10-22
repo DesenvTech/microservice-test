@@ -1,0 +1,30 @@
+POST http://localhost:3000/purchase HTTP/1.1
+content-type: application/json
+
+{
+    "userId":"caaf24b1-1a6c-4720-a38f-14d88577df78",
+    "amount": 1.0,
+    "price": 10.0,
+    "value": 8.0
+}
+
+###
+
+GET http://localhost:3000/purchase HTTP/1.1
+
+###
+
+GET http://localhost:3000/purchase/21a4c2d9-c2ca-4186-bb74-227af472c2a7 HTTP/1.1
+
+###
+
+PATCH  http://localhost:3000/purchase/21a4c2d9-c2ca-4186-bb74-227af472c2a7 HTTP/1.1
+content-type: application/json
+
+{
+    "value": 8.0
+}
+
+###
+
+DELETE  http://localhost:3000/purchase/21a4c2d9-c2ca-4186-bb74-227af472c2a7 HTTP/1.1

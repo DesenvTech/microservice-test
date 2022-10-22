@@ -1,0 +1,30 @@
+POST http://localhost:3000/user HTTP/1.1
+content-type: application/json
+
+{
+    "name": "name",
+    "document": "1",
+    "email": "cclaudinei-de-lima@hotmail.com",
+    "phone": "55991657275"
+}
+
+###
+
+GET http://localhost:3000/user HTTP/1.1
+
+###
+
+GET http://localhost:3000/user/21a4c2d9-c2ca-4186-bb74-227af472c2a7 HTTP/1.1
+
+###
+
+PATCH  http://localhost:3000/user/21a4c2d9-c2ca-4186-bb74-227af472c2a7 HTTP/1.1
+content-type: application/json
+
+{
+    "phone": "8"
+}
+
+###
+
+DELETE  http://localhost:3000/user/21a4c2d9-c2ca-4186-bb74-227af472c2a7 HTTP/1.1
