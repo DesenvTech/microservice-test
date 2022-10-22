@@ -1,4 +1,4 @@
-import { Logger, ValidationPipe } from '@nestjs/common';
+import { Logger, ValidationPipe, VersioningType } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import { NestFactory } from '@nestjs/core';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
@@ -12,10 +12,9 @@ async function bootstrap() {
   const configService = app.get(ConfigService);
 
   const options = new DocumentBuilder()
-    .setTitle('App example')
-    .setDescription('The app API description')
+    .setTitle('Test api-gateway')
+    .setDescription('microservice to test')
     .setVersion('1.0')
-    .addTag('app')
     .build();
 
   const document = SwaggerModule.createDocument(app, options);
@@ -23,6 +22,9 @@ async function bootstrap() {
 
   app.useGlobalPipes(new ValidationPipe());
   app.enableCors();
+  app.enableVersioning({
+    type: VersioningType.URI,
+  });
 
   await app.listen(configService.get<number>('PORT'), () =>
     logger.log(
