@@ -1,6 +1,6 @@
 CREATE DATABASE IF NOT EXISTS test;
 
-CREATE TABLE `test`.`user` (
+CREATE TABLE `test`.`usuarios` (
   `id` VARCHAR(36) NOT NULL,
   `nome` VARCHAR(100) NOT NULL,
   `cpf` VARCHAR(11) NOT NULL,
@@ -11,7 +11,7 @@ CREATE TABLE `test`.`user` (
   PRIMARY KEY (`id`));
 
 
-CREATE TABLE `test`.`purchase` (
+CREATE TABLE `test`.`pedidos` (
   `id` VARCHAR(36) NOT NULL,
   `usuario_id` VARCHAR(36) NOT NULL,
   `descricao` VARCHAR(255) NULL,

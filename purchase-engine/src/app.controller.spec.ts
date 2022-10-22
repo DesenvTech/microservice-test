@@ -1,6 +1,7 @@
 import { Test, TestingModule } from '@nestjs/testing';
+import { AppController } from './app.controller';
+import { AppService } from './app.service';
 import { PurchaseDto } from './dto/purchase.dto';
-import { PurchaseService } from './purchase.service';
 
 const mock: PurchaseDto = {
   id: '79ef5f2a-5785-414b-8401-0a751985c3fe',
@@ -11,33 +12,35 @@ const mock: PurchaseDto = {
   value: 20,
 };
 
-describe('PurchaseService', () => {
-  let service: PurchaseService;
+describe('AppController', () => {
+  let controller: AppController;
+  let appService: AppService;
 
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({
+      controllers: [AppController],
       providers: [
         {
-          provide: PurchaseService,
+          provide: AppService,
           useValue: {
             findOne: jest.fn(() => mock),
           },
         },
       ],
     }).compile();
-
-    service = module.get<PurchaseService>(PurchaseService);
+    controller = module.get<AppController>(AppController);
+    appService = module.get<AppService>(AppService);
   });
 
   it('should be defined', () => {
-    expect(service).toBeDefined();
+    expect(controller).toBeDefined();
   });
 
   describe('findOne', () => {
-    it('should return a purchase', async () => {
-      const response = await service.findOne('any');
-      expect(service.findOne).toBeCalledTimes(1);
-      expect(service.findOne).toBeCalledWith('any');
+    it('should return a user', async () => {
+      const response = await controller.findOne('any');
+      expect(appService.findOne).toBeCalledTimes(1);
+      expect(appService.findOne).toBeCalledWith('any');
       expect(response).toBe(mock);
     });
   });

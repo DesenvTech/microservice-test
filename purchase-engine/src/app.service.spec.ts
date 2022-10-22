@@ -1,6 +1,6 @@
 import { Test, TestingModule } from '@nestjs/testing';
+import { AppService } from './app.service';
 import { PurchaseDto } from './dto/purchase.dto';
-import { PurchaseService } from './purchase.service';
 
 const mock: PurchaseDto = {
   id: '79ef5f2a-5785-414b-8401-0a751985c3fe',
@@ -11,14 +11,14 @@ const mock: PurchaseDto = {
   value: 20,
 };
 
-describe('PurchaseService', () => {
-  let service: PurchaseService;
+describe('AppService', () => {
+  let service: AppService;
 
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({
       providers: [
         {
-          provide: PurchaseService,
+          provide: AppService,
           useValue: {
             findOne: jest.fn(() => mock),
           },
@@ -26,7 +26,7 @@ describe('PurchaseService', () => {
       ],
     }).compile();
 
-    service = module.get<PurchaseService>(PurchaseService);
+    service = module.get<AppService>(AppService);
   });
 
   it('should be defined', () => {
@@ -34,7 +34,7 @@ describe('PurchaseService', () => {
   });
 
   describe('findOne', () => {
-    it('should return a purchase', async () => {
+    it('should return a user', async () => {
       const response = await service.findOne('any');
       expect(service.findOne).toBeCalledTimes(1);
       expect(service.findOne).toBeCalledWith('any');
