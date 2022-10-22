@@ -11,17 +11,20 @@ export class PurchaseEntity {
   @PrimaryGeneratedColumn('uuid', { name: 'id' })
   id: string;
 
-  @Column({ name: 'nome' })
-  name: string;
+  @Column('uuid', { name: 'usuario_id' })
+  userId: string;
 
-  @Column({ name: 'cpf' })
-  document: string;
+  @Column({ name: 'descricao' })
+  description: string;
 
-  @Column({ name: 'email' })
-  email: string;
+  @Column({ name: 'quantidade' })
+  amount: number;
 
-  @Column({ name: 'telefone' })
-  phone: string;
+  @Column({ name: 'preco' })
+  price: number;
+
+  @Column({ name: 'valor' })
+  value: number;
 
   @CreateDateColumn({ name: 'created_at' })
   createdAt: Date;

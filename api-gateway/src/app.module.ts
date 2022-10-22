@@ -10,9 +10,10 @@ import { LoggerMiddleware } from './middleware/logger.middleware';
 import { APP_FILTER } from '@nestjs/core';
 import { AllExceptionsFilter } from './filter/all-exceptions.filter';
 import { UserModule } from './user/user.module';
+import { PurchaseModule } from './purchase/purchase.module';
 
 @Module({
-  imports: [ConfigModule.forRoot(), HttpModule, UserModule],
+  imports: [ConfigModule.forRoot(), HttpModule, UserModule, PurchaseModule],
   controllers: [],
   providers: [
     {

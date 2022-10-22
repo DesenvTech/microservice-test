@@ -13,7 +13,7 @@ CREATE TABLE `test`.`user` (
 
 CREATE TABLE `test`.`purchase` (
   `id` VARCHAR(36) NOT NULL,
-  `user_id` VARCHAR(36) NOT NULL,
+  `usuario_id` VARCHAR(36) NOT NULL,
   `descricao` VARCHAR(255) NULL,
   `quantidade` INT NOT NULL,
   `preco` DOUBLE NOT NULL,

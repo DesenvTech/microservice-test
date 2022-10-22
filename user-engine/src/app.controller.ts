@@ -11,8 +11,8 @@ export class AppController {
   private readonly logger = new Logger(AppController.name);
 
   @MessagePattern('create-user')
-  create(@Payload() value: CreateUserDto): Promise<UserDto> {
-    return this.appService.create(value);
+  create(@Payload() createUserDto: CreateUserDto): Promise<UserDto> {
+    return this.appService.create(createUserDto);
   }
 
   @MessagePattern('find-all-user')

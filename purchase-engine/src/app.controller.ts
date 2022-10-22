@@ -11,8 +11,10 @@ export class AppController {
   private readonly logger = new Logger(AppController.name);
 
   @MessagePattern('create-purchase')
-  create(@Payload() value: CreatePurchaseDto): Promise<PurchaseDto> {
-    return this.appService.create(value);
+  create(
+    @Payload() createPurchaseDto: CreatePurchaseDto,
+  ): Promise<PurchaseDto> {
+    return this.appService.create(createPurchaseDto['payload']);
   }
 
   @MessagePattern('find-all-purchase')

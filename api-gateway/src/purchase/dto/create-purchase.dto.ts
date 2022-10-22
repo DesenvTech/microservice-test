@@ -7,7 +7,7 @@ import {
 } from 'class-validator';
 
 export class CreatePurchaseDto {
-  @IsNotEmpty()
+  @IsOptional()
   @IsUUID()
   userId: string;
 

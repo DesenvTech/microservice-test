@@ -12,7 +12,7 @@ export class AppService {
     @InjectRepository(UserEntity)
     private readonly userRepository: Repository<UserEntity>,
   ) {}
-  abstract;
+
   async create(createUserDto: CreateUserDto) {
     try {
       const user = await this.userRepository.create({

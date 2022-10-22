@@ -10,15 +10,13 @@ import { PurchaseEntity } from './entities/purchase.entity';
 export class AppService {
   constructor(
     @InjectRepository(PurchaseEntity)
-    private readonly PurchaseRepository: Repository<PurchaseEntity>,
+    private readonly purchaseRepository: Repository<PurchaseEntity>,
   ) {}
-  abstract;
+
   async create(createPurchaseDto: CreatePurchaseDto) {
     try {
-      const purchase = await this.PurchaseRepository.create({
-        ...createPurchaseDto,
-      });
-      const response = await this.PurchaseRepository.save(purchase);
+      const purchase = await this.purchaseRepository.create(createPurchaseDto);
+      const response = await this.purchaseRepository.save(purchase);
 
       return JSON.parse(JSON.stringify(response));
     } catch (err) {
@@ -28,7 +26,7 @@ export class AppService {
 
   async findAll(): Promise<PurchaseDto[]> {
     try {
-      return await this.PurchaseRepository.find();
+      return await this.purchaseRepository.find();
     } catch (err) {
       return err;
     }
@@ -36,7 +34,7 @@ export class AppService {
 
   async findOne(id: string): Promise<PurchaseDto> {
     try {
-      const response = await this.PurchaseRepository.findOne({
+      const response = await this.purchaseRepository.findOne({
         where: {
           id,
         },
@@ -50,7 +48,7 @@ export class AppService {
 
   async update(id: string, updatePurchaseDto: Partial<UpdatePurchaseDto>) {
     try {
-      return await this.PurchaseRepository.update(id, updatePurchaseDto);
+      return await this.purchaseRepository.update(id, updatePurchaseDto);
     } catch (err) {
       return err;
     }
@@ -58,7 +56,7 @@ export class AppService {
 
   async remove(id: string) {
     try {
-      return await this.PurchaseRepository.delete(id);
+      return await this.purchaseRepository.delete(id);
     } catch (err) {
       return err;
     }
