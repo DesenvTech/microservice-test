@@ -55,9 +55,12 @@ services:
     container_name: api_gateway
     command: node dist/main 
     environment:
+      APP_NAME: api-gateway
+      APP_DESCRIPTION: api-gateway
+      APP_VERSION: 0.0.1
+      APP_PORT: 3000
       NODE_ENV: development
       LOGGER_LEVEL: silly
-      PORT: 3000
     ports:
       - '3000:3000'
     networks:
@@ -74,9 +77,12 @@ services:
     container_name: engine
     command: node dist/main
     environment:
+      APP_NAME: user-engine
+      APP_DESCRIPTION: user-engine
+      APP_VERSION: 0.0.1
+      APP_PORT: 3001
       NODE_ENV: development
       LOGGER_LEVEL: silly
-      PORT: 3001
       DB_TYPE: mysql
       DB_HOST: localhost
       DB_PORT: 3306
