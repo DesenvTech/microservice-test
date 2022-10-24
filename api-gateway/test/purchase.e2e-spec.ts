@@ -4,6 +4,7 @@ import * as request from 'supertest';
 import { AppModule } from '../src/app.module';
 import { CreatePurchaseDto } from 'src/purchase/dto/create-purchase.dto';
 import { PurchaseDto } from 'src/purchase/dto/purchase.dto';
+// import { Transport } from '@nestjs/microservices';
 
 describe('PurchaseController (e2e)', () => {
   let app: INestApplication;
@@ -14,13 +15,15 @@ describe('PurchaseController (e2e)', () => {
     }).compile();
 
     app = moduleFixture.createNestApplication();
+    await app.startAllMicroservices();
+
     await app.init();
   });
 
   describe('/purchase (POST)', () => {
     it('it should create a purchase', async () => {
       const purchaseDto: CreatePurchaseDto = {
-        userId: 'caaf24b1-1a6c-4720-a38f-14d88577df78',
+        userId: '65ffcd1d-90f5-459b-9b02-f107079fca07',
         amount: 1,
         description: 'Desc',
         price: 10,
@@ -65,7 +68,7 @@ describe('PurchaseController (e2e)', () => {
 
   describe('/purchase/:ID (GET)', () => {
     it('it should return a purchase by id', async () => {
-      const id = '3e88aa76-77c0-40e1-be5b-70c5a18c8849';
+      const id = '65ffcd1d-90f5-459b-9b02-f107079fca07';
 
       const response = await request(app.getHttpServer()).get(
         `/purchase/${id}`,
@@ -84,7 +87,7 @@ describe('PurchaseController (e2e)', () => {
 
   describe('/purchase (PATCH)', () => {
     it('it should update a purchase phone', async () => {
-      const id = '3e88aa76-77c0-40e1-be5b-70c5a18c8849';
+      const id = '65ffcd1d-90f5-459b-9b02-f107079fca07';
       const purchaseDto = {
         phone: '1',
       };
@@ -106,7 +109,7 @@ describe('PurchaseController (e2e)', () => {
 
   describe('/purchase/:ID (DELETE)', () => {
     it('it should return a purchase by id', async () => {
-      const id = '3e88aa76-77c0-40e1-be5b-70c5a18c8849';
+      const id = '65ffcd1d-90f5-459b-9b02-f107079fca07';
 
       const response = await request(app.getHttpServer()).delete(
         `/purchase/${id}`,

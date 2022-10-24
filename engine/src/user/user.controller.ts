@@ -15,7 +15,7 @@ export class UserController {
   }
 
   @MessagePattern('find-all-user')
-  index() {
+  findAll() {
     return this.userService.findAll();
   }
 

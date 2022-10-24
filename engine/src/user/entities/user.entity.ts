@@ -1,11 +1,8 @@
-import { PurchaseEntity } from 'src/purchase/entities/purchase.entity';
+import { PurchaseEntity } from '../../purchase/entities/purchase.entity';
 import {
   Column,
   CreateDateColumn,
   Entity,
-  JoinColumn,
-  JoinTable,
-  ManyToMany,
   OneToOne,
   PrimaryGeneratedColumn,
   UpdateDateColumn,
