@@ -22,8 +22,8 @@ import { CommonModule } from './common/common.module';
         isGlobal: true,
       },
     }),
-    UserModule,
     PurchaseModule,
+    UserModule,
   ],
   controllers: [],
   providers: [

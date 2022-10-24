@@ -12,11 +12,11 @@ async function bootstrap() {
       transport: Transport.KAFKA,
       options: {
         client: {
-          clientId: 'user',
+          clientId: 'user-and-purchase',
           brokers: ['host.docker.internal:9092'],
         },
         consumer: {
-          groupId: 'user-consumer',
+          groupId: 'user-and-purchase-consumer',
           allowAutoTopicCreation: true,
         },
       },

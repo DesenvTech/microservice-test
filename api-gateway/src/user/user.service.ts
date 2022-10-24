@@ -11,7 +11,7 @@ export class UserService implements OnModuleInit, OnModuleDestroy {
     transport: Transport.KAFKA,
     options: {
       client: {
-        clientId: 'user',
+        clientId: 'user-purchase',
         brokers: ['host.docker.internal:9092'],
       },
       consumer: {
@@ -20,7 +20,7 @@ export class UserService implements OnModuleInit, OnModuleDestroy {
       },
     },
   })
-  private client: ClientKafka;
+  client: ClientKafka;
   async onModuleInit() {
     const requestPatters = ['find-all-user', 'find-user', 'create-user'];
 

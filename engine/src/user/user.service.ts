@@ -26,15 +26,19 @@ export class UserService {
     }
   }
 
-  async findAll(): Promise<UserDto[]> {
+  async findAll() {
     try {
-      return await this.userRepository.find();
+      const response = await this.userRepository.find();
+
+      const user = response as UserDto[];
+
+      return user;
     } catch (err) {
       return err;
     }
   }
 
-  async findOne(id: string): Promise<UserDto> {
+  async findOne(id: string) {
     try {
       const response = await this.userRepository.findOne({
         where: {
@@ -42,7 +46,9 @@ export class UserService {
         },
       });
 
-      return JSON.parse(JSON.stringify(response));
+      const user = response as UserDto;
+
+      return JSON.stringify(user);
     } catch (err) {
       return err;
     }

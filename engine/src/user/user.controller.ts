@@ -2,7 +2,6 @@ import { Controller, Logger } from '@nestjs/common';
 import { MessagePattern, Payload } from '@nestjs/microservices';
 import { UserService } from './user.service';
 import { CreateUserDto } from './dto/create-user.dto';
-import { UserDto } from './dto/user.dto';
 
 @Controller('user')
 export class UserController {
@@ -11,27 +10,27 @@ export class UserController {
   private readonly logger = new Logger(UserController.name);
 
   @MessagePattern('create-user')
-  create(@Payload() createUserDto: CreateUserDto): Promise<UserDto> {
+  create(@Payload() createUserDto: CreateUserDto) {
     return this.userService.create(createUserDto);
   }
 
   @MessagePattern('find-all-user')
-  index(): Promise<UserDto[]> {
+  index() {
     return this.userService.findAll();
   }
 
   @MessagePattern('find-user')
-  findOne(@Payload() id: string): Promise<UserDto> {
+  findOne(@Payload() { id }: any) {
     return this.userService.findOne(id);
   }
 
   @MessagePattern('update-user')
-  update(@Payload() { id, updateUserDto }: any): Promise<void> {
+  update(@Payload() { id, updateUserDto }: any) {
     return this.userService.update(id, updateUserDto);
   }
 
   @MessagePattern('delete-user')
-  remove(@Payload() id: string): Promise<void> {
+  remove(@Payload() { id }: any) {
     return this.userService.remove(id);
   }
 }

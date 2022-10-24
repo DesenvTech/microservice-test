@@ -2,7 +2,6 @@ import { Controller, Logger } from '@nestjs/common';
 import { MessagePattern, Payload } from '@nestjs/microservices';
 import { PurchaseService } from './purchase.service';
 import { CreatePurchaseDto } from './dto/create-purchase.dto';
-import { PurchaseDto } from './dto/purchase.dto';
 
 @Controller('purchase')
 export class PurchaseController {
@@ -11,29 +10,27 @@ export class PurchaseController {
   private readonly logger = new Logger(PurchaseController.name);
 
   @MessagePattern('create-purchase')
-  create(
-    @Payload() createPurchaseDto: CreatePurchaseDto,
-  ): Promise<PurchaseDto> {
+  create(@Payload() createPurchaseDto: CreatePurchaseDto) {
     return this.purchaseService.create(createPurchaseDto['payload']);
   }
 
   @MessagePattern('find-all-purchase')
-  index(): Promise<PurchaseDto[]> {
+  findAll() {
     return this.purchaseService.findAll();
   }
 
   @MessagePattern('find-purchase')
-  findOne(@Payload() id: string): Promise<PurchaseDto> {
+  findOne(@Payload() { id }: any) {
     return this.purchaseService.findOne(id);
   }
 
   @MessagePattern('update-purchase')
-  update(@Payload() { id, updatePurchaseDto }: any): Promise<void> {
+  update(@Payload() { id, updatePurchaseDto }: any) {
     return this.purchaseService.update(id, updatePurchaseDto);
   }
 
   @MessagePattern('delete-purchase')
-  remove(@Payload() id: string): Promise<void> {
+  remove(@Payload() { id }: any) {
     return this.purchaseService.remove(id);
   }
 }

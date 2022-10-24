@@ -1,7 +1,12 @@
+import { PurchaseEntity } from 'src/purchase/entities/purchase.entity';
 import {
   Column,
   CreateDateColumn,
   Entity,
+  JoinColumn,
+  JoinTable,
+  ManyToMany,
+  OneToOne,
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from 'typeorm';
@@ -28,4 +33,7 @@ export class UserEntity {
 
   @UpdateDateColumn({ name: 'updated_at' })
   updatedAt: Date;
+
+  @OneToOne(() => PurchaseEntity, (x) => x.user)
+  purchase: PurchaseEntity;
 }

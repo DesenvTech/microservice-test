@@ -67,11 +67,11 @@ services:
     restart: always
 
 
-  user-engine:
+  engine:
     build:
-      context: ./user-engine
+      context: ./engine
       dockerfile: Dockerfile
-    container_name: user_engine
+    container_name: engine
     command: node dist/main
     environment:
       NODE_ENV: development
@@ -88,32 +88,6 @@ services:
         - "3001:3001"
     depends_on:
       - api-gateway
-    networks:
-      - broker_network
-    restart: always
-
-
-  purchase-engine:
-    build:
-      context: ./purchase-engine
-      dockerfile: Dockerfile
-    container_name: purchase_engine
-    command: node dist/main
-    environment:
-      NODE_ENV: development
-      LOGGER_LEVEL: silly
-      PORT: 3002
-      DB_TYPE: mysql
-      DB_HOST: localhost
-      DB_PORT: 3306
-      DB_USERNAME: root    
-      DB_PASSWORD: root
-      DB_NAME: test
-      DB_SYNC: false
-    ports:
-        - "3002:3002"
-    depends_on:
-      - user-engine
     networks:
       - broker_network
     restart: always

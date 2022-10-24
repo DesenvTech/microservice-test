@@ -1,7 +1,12 @@
+import { UserEntity } from 'src/user/entities/user.entity';
 import {
   Column,
   CreateDateColumn,
   Entity,
+  JoinColumn,
+  JoinTable,
+  ManyToMany,
+  OneToOne,
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from 'typeorm';
@@ -31,4 +36,8 @@ export class PurchaseEntity {
 
   @UpdateDateColumn({ name: 'updated_at' })
   updatedAt: Date;
+
+  @OneToOne(() => UserEntity, (x) => x.purchase, { eager: true })
+  @JoinColumn({ name: 'usuario_id', referencedColumnName: 'id' })
+  user: UserEntity;
 }

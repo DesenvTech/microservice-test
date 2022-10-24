@@ -18,29 +18,38 @@ export class PurchaseService {
       const purchase = await this.purchaseRepository.create(createPurchaseDto);
       const response = await this.purchaseRepository.save(purchase);
 
-      return JSON.parse(JSON.stringify(response));
+      return response;
     } catch (err) {
       return err;
     }
   }
 
-  async findAll(): Promise<PurchaseDto[]> {
+  async findAll() {
     try {
-      return await this.purchaseRepository.find();
+      const response = await this.purchaseRepository.find({
+        relations: ['user'],
+      });
+
+      const purchase = response as PurchaseDto[];
+
+      return purchase;
     } catch (err) {
       return err;
     }
   }
 
-  async findOne(id: string): Promise<PurchaseDto> {
+  async findOne(id: string) {
     try {
       const response = await this.purchaseRepository.findOne({
+        relations: ['user'],
         where: {
           id,
         },
       });
 
-      return JSON.parse(JSON.stringify(response));
+      const purchase = response as PurchaseDto;
+
+      return JSON.stringify(purchase);
     } catch (err) {
       return err;
     }
