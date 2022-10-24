@@ -26,10 +26,10 @@ async function bootstrap() {
     type: VersioningType.URI,
   });
 
-  await app.listen(configService.get<number>('PORT'), () =>
+  await app.listen(configService.get<number>('APP_PORT'), () =>
     logger.log(
       `Microservice is running on port: ${
-        configService.get<number>('PORT') || 3000
+        configService.get<number>('APP_PORT') || 3000
       }`,
     ),
   );

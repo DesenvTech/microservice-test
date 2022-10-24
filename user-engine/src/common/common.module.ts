@@ -2,6 +2,7 @@ import { DynamicModule, Module } from '@nestjs/common';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { TypeOrmModule, TypeOrmModuleOptions } from '@nestjs/typeorm';
 import { databaseConfig } from 'src/common/config/database.config';
+import { appConfig } from './config/app.config';
 import { CommonModuleOptions } from './interfaces/common-module-options.interface';
 
 @Module({})
@@ -11,6 +12,7 @@ export class CommonModule {
       module: CommonModule,
       imports: [
         ConfigModule.forRoot({ ...options.configModule }),
+        ConfigModule.forFeature(appConfig()),
         ConfigModule.forFeature(databaseConfig()),
         TypeOrmModule.forRootAsync({
           inject: [ConfigService],

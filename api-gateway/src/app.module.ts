@@ -4,16 +4,27 @@ import {
   NestModule,
   RequestMethod,
 } from '@nestjs/common';
-import { HttpModule } from '@nestjs/axios';
-import { ConfigModule } from '@nestjs/config';
 import { LoggerMiddleware } from './middleware/logger.middleware';
 import { APP_FILTER } from '@nestjs/core';
 import { AllExceptionsFilter } from './filter/all-exceptions.filter';
 import { UserModule } from './user/user.module';
 import { PurchaseModule } from './purchase/purchase.module';
+import { CommonModule } from './common/common.module';
 
 @Module({
-  imports: [ConfigModule.forRoot(), HttpModule, UserModule, PurchaseModule],
+  imports: [
+    CommonModule.register({
+      configModule: {
+        ignoreEnvFile: ['production', 'staging'].includes(process.env.NODE_ENV),
+        envFilePath: '.env',
+        expandVariables: ['development', 'test'].includes(process.env.NODE_ENV),
+        cache: ['production', 'staging'].includes(process.env.NODE_ENV),
+        isGlobal: true,
+      },
+    }),
+    UserModule,
+    PurchaseModule,
+  ],
   controllers: [],
   providers: [
     {

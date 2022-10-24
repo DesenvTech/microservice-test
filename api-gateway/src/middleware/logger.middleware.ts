@@ -1,6 +1,6 @@
 import { Injectable, NestMiddleware } from '@nestjs/common';
 import { NextFunction, Request, Response } from 'express';
-import Logger from '../config/winston.config';
+import Logger from '../common/config/winston.config';
 const isEmpty = (obj) => JSON.stringify(obj) === '{}';
 
 @Injectable()

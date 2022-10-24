@@ -6,7 +6,7 @@ import {
   HttpStatus,
 } from '@nestjs/common';
 import { HttpAdapterHost } from '@nestjs/core';
-import Logger from '../config/winston.config';
+import Logger from '../common/config/winston.config';
 
 @Catch(HttpException)
 export class AllExceptionsFilter implements ExceptionFilter {
