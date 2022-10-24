@@ -107,9 +107,7 @@ describe('UserController (e2e)', () => {
 
       const response = await request(app.getHttpServer()).delete(`/user/${id}`);
 
-      const user: any = response.body;
-
-      if (user?.id === undefined) expect(HttpStatus.OK);
+      if (response?.statusCode) expect(response.statusCode).toBe(HttpStatus.OK);
     });
   });
 });

@@ -2,11 +2,7 @@ import { MiddlewareConsumer, Module, NestModule } from '@nestjs/common';
 import { LoggerMiddleware } from './middleware/logger.middleware';
 import { APP_FILTER } from '@nestjs/core';
 import { AllExceptionsFilter } from './filter/all-exceptions.filter';
-import { AppController } from './app.controller';
-import { AppService } from './app.service';
-import { TypeOrmModule } from '@nestjs/typeorm';
 import { CommonModule } from './common/common.module';
-import { PurchaseEntity } from './entities/purchase.entity';
 
 @Module({
   imports: [
@@ -19,15 +15,13 @@ import { PurchaseEntity } from './entities/purchase.entity';
         isGlobal: true,
       },
     }),
-    TypeOrmModule.forFeature([PurchaseEntity]),
   ],
-  controllers: [AppController],
+  controllers: [],
   providers: [
     {
       provide: APP_FILTER,
       useClass: AllExceptionsFilter,
     },
-    AppService,
   ],
 })
 export class AppModule implements NestModule {

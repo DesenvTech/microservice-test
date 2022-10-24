@@ -1,10 +1,11 @@
 import { Module } from '@nestjs/common';
 import { PurchaseService } from './purchase.service';
 import { PurchaseController } from './purchase.controller';
-import { UserModule } from 'src/user/user.module';
+import { TypeOrmModule } from '@nestjs/typeorm';
+import { PurchaseEntity } from './entities/purchase.entity';
 
 @Module({
-  imports: [UserModule],
+  imports: [TypeOrmModule.forFeature([PurchaseEntity])],
   controllers: [PurchaseController],
   providers: [PurchaseService],
 })

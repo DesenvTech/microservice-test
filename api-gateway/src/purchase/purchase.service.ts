@@ -1,12 +1,15 @@
 import { Injectable, OnModuleDestroy, OnModuleInit } from '@nestjs/common';
 import { Client, ClientKafka, Transport } from '@nestjs/microservices';
 import { Observable } from 'rxjs';
+import { UserService } from 'src/user/user.service';
 import { CreatePurchaseDto } from './dto/create-purchase.dto';
 import { PurchaseDto } from './dto/purchase.dto';
 import { UpdatePurchaseDto } from './dto/update-purchase.dto';
 
 @Injectable()
 export class PurchaseService implements OnModuleInit, OnModuleDestroy {
+  constructor(private readonly userService: UserService) {}
+
   @Client({
     transport: Transport.KAFKA,
     options: {
@@ -53,6 +56,9 @@ export class PurchaseService implements OnModuleInit, OnModuleDestroy {
   }
 
   findOne(id: string): Observable<PurchaseDto> {
+    const a = this.userService.findAll();
+    console.log(a);
+
     return this.client.send('find-purchase', { id });
   }
 

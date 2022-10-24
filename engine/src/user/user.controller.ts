@@ -1,37 +1,37 @@
 import { Controller, Logger } from '@nestjs/common';
 import { MessagePattern, Payload } from '@nestjs/microservices';
-import { AppService } from './app.service';
+import { UserService } from './user.service';
 import { CreateUserDto } from './dto/create-user.dto';
 import { UserDto } from './dto/user.dto';
 
-@Controller()
-export class AppController {
-  constructor(private readonly appService: AppService) {}
+@Controller('user')
+export class UserController {
+  constructor(private readonly userService: UserService) {}
 
-  private readonly logger = new Logger(AppController.name);
+  private readonly logger = new Logger(UserController.name);
 
   @MessagePattern('create-user')
   create(@Payload() createUserDto: CreateUserDto): Promise<UserDto> {
-    return this.appService.create(createUserDto);
+    return this.userService.create(createUserDto);
   }
 
   @MessagePattern('find-all-user')
   index(): Promise<UserDto[]> {
-    return this.appService.findAll();
+    return this.userService.findAll();
   }
 
   @MessagePattern('find-user')
   findOne(@Payload() id: string): Promise<UserDto> {
-    return this.appService.findOne(id);
+    return this.userService.findOne(id);
   }
 
   @MessagePattern('update-user')
   update(@Payload() { id, updateUserDto }: any): Promise<void> {
-    return this.appService.update(id, updateUserDto);
+    return this.userService.update(id, updateUserDto);
   }
 
   @MessagePattern('delete-user')
   remove(@Payload() id: string): Promise<void> {
-    return this.appService.remove(id);
+    return this.userService.remove(id);
   }
 }

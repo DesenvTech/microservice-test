@@ -2,12 +2,12 @@ import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { CreatePurchaseDto } from './dto/create-purchase.dto';
-import { UpdatePurchaseDto } from './dto/update-purchase.dto';
 import { PurchaseDto } from './dto/purchase.dto';
+import { UpdatePurchaseDto } from './dto/update-purchase.dto';
 import { PurchaseEntity } from './entities/purchase.entity';
 
 @Injectable()
-export class AppService {
+export class PurchaseService {
   constructor(
     @InjectRepository(PurchaseEntity)
     private readonly purchaseRepository: Repository<PurchaseEntity>,

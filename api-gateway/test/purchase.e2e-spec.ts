@@ -112,9 +112,7 @@ describe('PurchaseController (e2e)', () => {
         `/purchase/${id}`,
       );
 
-      const purchase: any = response.body;
-
-      if (purchase?.id === undefined) expect(HttpStatus.OK);
+      if (response?.statusCode) expect(response.statusCode).toBe(HttpStatus.OK);
     });
   });
 });

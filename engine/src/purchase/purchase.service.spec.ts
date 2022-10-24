@@ -1,23 +1,24 @@
 import { Test, TestingModule } from '@nestjs/testing';
-import { AppService } from './app.service';
-import { UserDto } from './dto/user.dto';
+import { PurchaseService } from './purchase.service';
+import { PurchaseDto } from './dto/purchase.dto';
 
-const mock: UserDto = {
+const mock: PurchaseDto = {
   id: '79ef5f2a-5785-414b-8401-0a751985c3fe',
-  name: 'Claudinei',
-  document: '0132222334',
-  email: 'email@email.com',
-  phone: '5555555555',
+  userId: 'caaf24b1-1a6c-4720-a38f-14d88577df78',
+  amount: 1,
+  description: 'Desc',
+  price: 10,
+  value: 20,
 };
 
-describe('AppService', () => {
-  let service: AppService;
+describe('PurchaseService', () => {
+  let service: PurchaseService;
 
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({
       providers: [
         {
-          provide: AppService,
+          provide: PurchaseService,
           useValue: {
             findOne: jest.fn(() => mock),
           },
@@ -25,7 +26,7 @@ describe('AppService', () => {
       ],
     }).compile();
 
-    service = module.get<AppService>(AppService);
+    service = module.get<PurchaseService>(PurchaseService);
   });
 
   it('should be defined', () => {
